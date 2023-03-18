@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
 
     public bool isHoldingJump = false;
     public float maxHoldJumpTime = 0.4f;
+    public float maxMaxHoldJumpTime = 0.4f;
     public float holdJumpTimer = 0.0f;
 
     public float jumpGroundThreshold = 1;
@@ -98,6 +99,7 @@ public class Player : MonoBehaviour
         {
             float velocityRatio = velocity.x / maxXVelocity;
             acceleration = maxAcceleration * (1 - velocityRatio);
+            maxHoldJumpTime = maxMaxHoldJumpTime * velocityRatio;
 
             velocity.x += acceleration * Time.fixedDeltaTime;
             if (velocity.x >= maxXVelocity)
